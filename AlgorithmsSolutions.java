@@ -1,28 +1,25 @@
 import java.util.*;
 
-// ============================================================================
-// ALGORITHMS SOLUTIONS - COMPLETE JAVA IMPLEMENTATION
-// ============================================================================
-
-public class AlgorithmsSolutions {
+public class AlgorithmsSolutions 
+{
     
-    // ========================================================================
     // PROBLEM 1: Median via Selection Sort Invariant
-    // ========================================================================
     
-    public static int findMedian(int[] arr) {
+    public static int findMedian(int[] arr) 
+    {
         int[] tempArr = arr.clone();
         int targetIndex = tempArr.length / 2;
-        
-        // Run selection sort only until we reach the median index
-        for (int i = 0; i <= targetIndex; i++) {
+    
+        for (int i = 0; i <= targetIndex; i++) 
+        {
             int minIdx = i;
-            for (int j = i + 1; j < tempArr.length; j++) {
-                if (tempArr[j] < tempArr[minIdx]) {
+            for (int j = i + 1; j < tempArr.length; j++) 
+            {
+                if (tempArr[j] < tempArr[minIdx]) 
+                {
                     minIdx = j;
                 }
             }
-            // Swap
             int temp = tempArr[i];
             tempArr[i] = tempArr[minIdx];
             tempArr[minIdx] = temp;
@@ -31,42 +28,40 @@ public class AlgorithmsSolutions {
         return tempArr[targetIndex];
     }
     
-    // ========================================================================
     // PROBLEM 2: K-th Largest via Bubble Sort Invariant
-    // ========================================================================
     
-    public static int findKthLargest(int[] arr, int k) {
+    public static int findKthLargest(int[] arr, int k) 
+    {
         int[] tempArr = arr.clone();
         int size = tempArr.length;
-        
-        // Run k passes of bubble sort
-        for (int pass = 0; pass < k; pass++) {
-            for (int i = 0; i < size - pass - 1; i++) {
-                if (tempArr[i] > tempArr[i + 1]) {
+    
+        for (int pass = 0; pass < k; pass++) 
+        {
+            for (int i = 0; i < size - pass - 1; i++) 
+            {
+                if (tempArr[i] > tempArr[i + 1]) 
+                {
                     int temp = tempArr[i];
                     tempArr[i] = tempArr[i + 1];
                     tempArr[i + 1] = temp;
                 }
             }
         }
-        
-        // k-th largest is at index size - k
         return tempArr[size - k];
     }
     
-    // ========================================================================
     // PROBLEM 3: Merge Two Arrays via Insertion Sort Logic
-    // ========================================================================
     
-    public static int[] mergeSorted(int[] a, int[] b) {
+    public static int[] mergeSorted(int[] a, int[] b) 
+    {
         int[] out = new int[a.length + b.length];
         int outCount = 0;
         
-        // Process all elements from a
-        for (int i = 0; i < a.length; i++) {
-            // Find correct position to insert a[i]
+        for (int i = 0; i < a.length; i++) 
+        {
             int pos = outCount;
-            while (pos > 0 && out[pos - 1] > a[i]) {
+            while (pos > 0 && out[pos - 1] > a[i]) 
+            {
                 out[pos] = out[pos - 1];
                 pos--;
             }
@@ -74,11 +69,11 @@ public class AlgorithmsSolutions {
             outCount++;
         }
         
-        // Process all elements from b
-        for (int i = 0; i < b.length; i++) {
-            // Find correct position to insert b[i]
+        for (int i = 0; i < b.length; i++) 
+        {
             int pos = outCount;
-            while (pos > 0 && out[pos - 1] > b[i]) {
+            while (pos > 0 && out[pos - 1] > b[i]) 
+            {
                 out[pos] = out[pos - 1];
                 pos--;
             }
@@ -89,58 +84,75 @@ public class AlgorithmsSolutions {
         return out;
     }
     
-    // ========================================================================
     // PROBLEM 4: Recursive Problems
-    // ========================================================================
     
     // 4.1: Factorial
-    public static long factorial(int n) {
-        if (n == 0 || n == 1) {
+    
+    public static long factorial(int n) 
+    {
+        if (n == 0 || n == 1) 
+        {
             return 1;
         }
         return n * factorial(n - 1);
     }
     
     // 4.2: Fibonacci
-    public static long fibonacci(int n) {
+    
+    public static long fibonacci(int n) 
+    {
         if (n == 0) return 0;
         if (n == 1) return 1;
         return fibonacci(n - 1) + fibonacci(n - 2);
     }
     
     // 4.3: Count Digits
-    public static int countDigits(int n) {
-        if (n < 10) {
+    
+    public static int countDigits(int n) 
+    {
+        if (n < 10) 
+        {
             return 1;
         }
         return 1 + countDigits(n / 10);
     }
     
     // 4.4: Power Function with fast exponentiation
-    public static double power(double base, int exp) {
-        if (exp == 0) {
+    
+    public static double power(double base, int exp) 
+    {
+        if (exp == 0) 
+        {
             return 1.0;
         }
         
-        if (exp < 0) {
+        if (exp < 0) 
+        {
             return 1.0 / power(base, -exp);
         }
         
-        if (exp % 2 == 0) {
+        if (exp % 2 == 0) 
+        {
             double half = power(base, exp / 2);
             return half * half;
-        } else {
+        } 
+        else 
+        {
             return base * power(base, exp - 1);
         }
     }
     
     // 4.5: Palindrome Check
-    public static boolean isPalindrome(String str, int left, int right) {
-        if (left >= right) {
+    
+    public static boolean isPalindrome(String str, int left, int right) 
+    {
+        if (left >= right) 
+        {
             return true;
         }
         
-        if (str.charAt(left) != str.charAt(right)) {
+        if (str.charAt(left) != str.charAt(right)) 
+        {
             return false;
         }
         
@@ -148,16 +160,22 @@ public class AlgorithmsSolutions {
     }
     
     // 4.6: Sum of Array
-    public static int arraySum(int[] arr, int size) {
-        if (size == 0) {
+    
+    public static int arraySum(int[] arr, int size) 
+    {
+        if (size == 0) 
+        {
             return 0;
         }
         return arr[size - 1] + arraySum(arr, size - 1);
     }
     
     // 4.7: Maximum of Array
-    public static int arrayMax(int[] arr, int size) {
-        if (size == 1) {
+    
+    public static int arrayMax(int[] arr, int size) 
+    {
+        if (size == 1) 
+        {
             return arr[0];
         }
         
@@ -166,28 +184,36 @@ public class AlgorithmsSolutions {
     }
     
     // 4.8: Binary Search
-    public static int binarySearch(int[] arr, int left, int right, int target) {
-        if (left > right) {
+    
+    public static int binarySearch(int[] arr, int left, int right, int target) 
+    {
+        if (left > right) 
+        {
             return -1;
         }
         
         int mid = (left + right) / 2;
         
-        if (arr[mid] == target) {
+        if (arr[mid] == target) 
+        {
             return mid;
-        } else if (arr[mid] > target) {
+        } 
+        else if (arr[mid] > target) 
+        {
             return binarySearch(arr, left, mid - 1, target);
-        } else {
+        } 
+        else 
+        {
             return binarySearch(arr, mid + 1, right, target);
         }
     }
     
-    // ========================================================================
     // PROBLEM 5: Merge Sort
-    // ========================================================================
     
-    public static void mergeSort(int[] arr, int left, int right) {
-        if (left < right) {
+    public static void mergeSort(int[] arr, int left, int right) 
+    {
+        if (left < right) 
+        {
             int mid = left + (right - left) / 2;
             
             mergeSort(arr, left, mid);
@@ -196,58 +222,64 @@ public class AlgorithmsSolutions {
         }
     }
     
-    private static void merge(int[] arr, int left, int mid, int right) {
+    private static void merge(int[] arr, int left, int mid, int right) 
+    {
         int leftSize = mid - left + 1;
         int rightSize = right - mid;
         
-        // Create temporary arrays
         int[] leftArr = new int[leftSize];
         int[] rightArr = new int[rightSize];
         
-        // Copy data to temporary arrays
         System.arraycopy(arr, left, leftArr, 0, leftSize);
         System.arraycopy(arr, mid + 1, rightArr, 0, rightSize);
         
-        // Merge the temporary arrays back
         int i = 0, j = 0, k = left;
         
-        while (i < leftSize && j < rightSize) {
-            if (leftArr[i] <= rightArr[j]) {
+        while (i < leftSize && j < rightSize) 
+        {
+            if (leftArr[i] <= rightArr[j]) 
+            {
                 arr[k++] = leftArr[i++];
-            } else {
+            } 
+            else 
+            {
                 arr[k++] = rightArr[j++];
             }
         }
         
-        // Copy remaining elements
-        while (i < leftSize) {
+        while (i < leftSize) 
+        {
             arr[k++] = leftArr[i++];
         }
-        while (j < rightSize) {
+        while (j < rightSize) 
+        {
             arr[k++] = rightArr[j++];
         }
     }
     
-    // ========================================================================
     // PROBLEM 6: Quick Sort
-    // ========================================================================
     
     static long swapCount = 0;
     
-    public static void quickSort(int[] arr, int low, int high) {
-        if (low < high) {
+    public static void quickSort(int[] arr, int low, int high) 
+    {
+        if (low < high) 
+        {
             int pi = partition(arr, low, high);
             quickSort(arr, low, pi - 1);
             quickSort(arr, pi + 1, high);
         }
     }
     
-    private static int partition(int[] arr, int low, int high) {
+    private static int partition(int[] arr, int low, int high) 
+    {
         int pivot = arr[high];
         int i = low - 1;
         
-        for (int j = low; j < high; j++) {
-            if (arr[j] < pivot) {
+        for (int j = low; j < high; j++) 
+        {
+            if (arr[j] < pivot) 
+            {
                 i++;
                 int temp = arr[i];
                 arr[i] = arr[j];
@@ -264,42 +296,47 @@ public class AlgorithmsSolutions {
         return i + 1;
     }
     
-    // ========================================================================
     // PROBLEM 7: Fractional Knapsack
-    // ========================================================================
     
-    static class Item implements Comparable<Item> {
+    static class Item implements Comparable<Item> 
+    {
         int weight;
         int value;
         double ratio;
         
-        Item(int weight, int value) {
+        Item(int weight, int value) 
+        {
             this.weight = weight;
             this.value = value;
             this.ratio = (double) value / weight;
         }
         
         @Override
-        public int compareTo(Item other) {
-            return Double.compare(other.ratio, this.ratio); // Descending order
+        public int compareTo(Item other) 
+        {
+            return Double.compare(other.ratio, this.ratio); 
         }
     }
     
-    public static double fractionalKnapsack(Item[] items, int capacity) {
+    public static double fractionalKnapsack(Item[] items, int capacity) 
+    {
         Arrays.sort(items);
         
         double totalValue = 0.0;
         int remainingCapacity = capacity;
         
-        for (Item item : items) {
-            if (remainingCapacity <= 0) break;
+        for (Item item : items) 
+        {
+            if (remainingCapacity <= 0) 
+                break;
             
-            if (item.weight <= remainingCapacity) {
-                // Take the whole item
+            if (item.weight <= remainingCapacity) 
+            {
                 totalValue += item.value;
                 remainingCapacity -= item.weight;
-            } else {
-                // Take fraction of the item
+            } 
+            else 
+            {
                 double fraction = (double) remainingCapacity / item.weight;
                 totalValue += fraction * item.value;
                 remainingCapacity = 0;
@@ -309,58 +346,70 @@ public class AlgorithmsSolutions {
         return totalValue;
     }
     
-    // ========================================================================
     // PROBLEM 8: Minimum Spanning Tree
-    // ========================================================================
     
-    static class Edge implements Comparable<Edge> {
+    static class Edge implements Comparable<Edge> 
+    {
         int u;
         int v;
         int weight;
         
-        Edge(int u, int v, int weight) {
+        Edge(int u, int v, int weight) 
+        {
             this.u = u;
             this.v = v;
             this.weight = weight;
         }
         
         @Override
-        public int compareTo(Edge other) {
+        public int compareTo(Edge other) 
+        {
             return this.weight - other.weight;
         }
     }
     
-    static class UnionFind {
+    static class UnionFind 
+    {
         int[] parent;
         int[] rank;
         
-        UnionFind(int n) {
+        UnionFind(int n) 
+        {
             parent = new int[n];
             rank = new int[n];
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < n; i++) 
+            {
                 parent[i] = i;
                 rank[i] = 0;
             }
         }
         
-        int find(int x) {
-            if (parent[x] != x) {
-                parent[x] = find(parent[x]); // Path compression
+        int find(int x) 
+        {
+            if (parent[x] != x) 
+            {
+                parent[x] = find(parent[x]); 
             }
             return parent[x];
         }
         
-        void unite(int x, int y) {
+        void unite(int x, int y) 
+        {
             int rootX = find(x);
             int rootY = find(y);
             
-            if (rootX != rootY) {
-                // Union by rank
-                if (rank[rootX] < rank[rootY]) {
+            if (rootX != rootY) 
+            {
+                if (rank[rootX] < rank[rootY]) 
+                {
                     parent[rootX] = rootY;
-                } else if (rank[rootX] > rank[rootY]) {
+                } 
+                else if (rank[rootX] > rank[rootY]) 
+                {
                     parent[rootY] = rootX;
-                } else {
+                } 
+                else 
+                {
                     parent[rootY] = rootX;
                     rank[rootX]++;
                 }
@@ -369,7 +418,9 @@ public class AlgorithmsSolutions {
     }
     
     // 8a: Prim's Algorithm
-    public static void primsMST(int[][] graph) {
+    
+    public static void primsMST(int[][] graph) 
+    {
         int V = graph.length;
         int[] minCost = new int[V];
         boolean[] inMST = new boolean[V];
@@ -384,26 +435,30 @@ public class AlgorithmsSolutions {
         System.out.println("\nPrim's Algorithm MST:");
         System.out.println("Edge\t\tWeight");
         
-        for (int count = 0; count < V; count++) {
+        for (int count = 0; count < V; count++) 
+        {
             int u = -1;
             
-            // Find minimum cost vertex not in MST
-            for (int i = 0; i < V; i++) {
-                if (!inMST[i] && (u == -1 || minCost[i] < minCost[u])) {
+            for (int i = 0; i < V; i++) 
+            {
+                if (!inMST[i] && (u == -1 || minCost[i] < minCost[u])) 
+                {
                     u = i;
                 }
             }
             
             inMST[u] = true;
             
-            if (parent[u] != -1) {
+            if (parent[u] != -1) 
+            {
                 System.out.println(parent[u] + " - " + u + "\t\t" + minCost[u]);
                 totalCost += minCost[u];
             }
             
-            // Update costs of adjacent vertices
-            for (int v = 0; v < V; v++) {
-                if (graph[u][v] != 0 && !inMST[v] && graph[u][v] < minCost[v]) {
+            for (int v = 0; v < V; v++) 
+            {
+                if (graph[u][v] != 0 && !inMST[v] && graph[u][v] < minCost[v]) 
+                {
                     minCost[v] = graph[u][v];
                     parent[v] = u;
                 }
@@ -414,7 +469,9 @@ public class AlgorithmsSolutions {
     }
     
     // 8b: Kruskal's Algorithm
-    public static void kruskalsMST(Edge[] edges, int V) {
+    
+    public static void kruskalsMST(Edge[] edges, int V) 
+    {
         Arrays.sort(edges);
         
         UnionFind uf = new UnionFind(V);
@@ -424,14 +481,16 @@ public class AlgorithmsSolutions {
         System.out.println("\nKruskal's Algorithm MST:");
         System.out.println("Edge\t\tWeight");
         
-        for (Edge edge : edges) {
+        for (Edge edge : edges) 
+        {
             if (edgeCount >= V - 1) break;
             
             int u = edge.u;
             int v = edge.v;
             int w = edge.weight;
             
-            if (uf.find(u) != uf.find(v)) {
+            if (uf.find(u) != uf.find(v)) 
+            {
                 System.out.println(u + " - " + v + "\t\t" + w);
                 totalCost += w;
                 edgeCount++;
@@ -442,14 +501,14 @@ public class AlgorithmsSolutions {
         System.out.println("Total weight: " + totalCost);
     }
     
-    // ========================================================================
     // PROBLEM 9: Shortest Path Algorithms
-    // ========================================================================
     
     private static final int INF = 999999;
     
     // 9a: Dijkstra's Algorithm
-    public static void dijkstra(int[][] graph, int src) {
+    
+    public static void dijkstra(int[][] graph, int src) 
+    {
         int V = graph.length;
         int[] dist = new int[V];
         boolean[] visited = new boolean[V];
@@ -457,12 +516,13 @@ public class AlgorithmsSolutions {
         Arrays.fill(dist, INF);
         dist[src] = 0;
         
-        for (int count = 0; count < V - 1; count++) {
+        for (int count = 0; count < V - 1; count++) 
+        {
             int u = -1;
-            
-            // Find unvisited vertex with minimum distance
-            for (int i = 0; i < V; i++) {
-                if (!visited[i] && (u == -1 || dist[i] < dist[u])) {
+            for (int i = 0; i < V; i++) 
+            {
+                if (!visited[i] && (u == -1 || dist[i] < dist[u])) 
+                {
                     u = i;
                 }
             }
@@ -471,10 +531,11 @@ public class AlgorithmsSolutions {
             
             visited[u] = true;
             
-            // Relax edges
             for (int v = 0; v < V; v++) {
-                if (graph[u][v] != 0 && !visited[v]) {
-                    if (dist[u] + graph[u][v] < dist[v]) {
+                if (graph[u][v] != 0 && !visited[v]) 
+                {
+                    if (dist[u] + graph[u][v] < dist[v]) 
+                    {
                         dist[v] = dist[u] + graph[u][v];
                     }
                 }
@@ -483,42 +544,51 @@ public class AlgorithmsSolutions {
         
         System.out.println("\nDijkstra's Algorithm (Source: " + src + "):");
         System.out.println("Vertex\tDistance from Source");
-        for (int i = 0; i < V; i++) {
-            if (dist[i] == INF) {
+        for (int i = 0; i < V; i++) 
+        {
+            if (dist[i] == INF) 
+            {
                 System.out.println(i + "\tINF");
-            } else {
+            } 
+            else 
+            {
                 System.out.println(i + "\t" + dist[i]);
             }
         }
     }
     
     // 9b: Bellman-Ford Algorithm
-    public static void bellmanFord(int V, Edge[] edges, int src) {
+    
+    public static void bellmanFord(int V, Edge[] edges, int src) 
+    {
         int[] dist = new int[V];
         Arrays.fill(dist, Integer.MAX_VALUE / 2);
         dist[src] = 0;
         
-        // Relax edges V-1 times
-        for (int i = 0; i < V - 1; i++) {
-            for (Edge edge : edges) {
+        for (int i = 0; i < V - 1; i++) 
+        {
+            for (Edge edge : edges) 
+            {
                 int u = edge.u;
                 int v = edge.v;
                 int w = edge.weight;
                 
-                if (dist[u] != Integer.MAX_VALUE / 2 && dist[u] + w < dist[v]) {
+                if (dist[u] != Integer.MAX_VALUE / 2 && dist[u] + w < dist[v]) 
+                {
                     dist[v] = dist[u] + w;
                 }
             }
         }
         
-        // Check for negative cycles
         boolean hasNegativeCycle = false;
-        for (Edge edge : edges) {
+        for (Edge edge : edges) 
+        {
             int u = edge.u;
             int v = edge.v;
             int w = edge.weight;
             
-            if (dist[u] != Integer.MAX_VALUE / 2 && dist[u] + w < dist[v]) {
+            if (dist[u] != Integer.MAX_VALUE / 2 && dist[u] + w < dist[v]) 
+            {
                 hasNegativeCycle = true;
                 break;
             }
@@ -526,37 +596,49 @@ public class AlgorithmsSolutions {
         
         System.out.println("\nBellman-Ford Algorithm (Source: " + src + "):");
         
-        if (hasNegativeCycle) {
+        if (hasNegativeCycle) 
+        {
             System.out.println("Graph contains a negative-weight cycle");
-        } else {
+        } 
+        else 
+        {
             System.out.println("Vertex\tDistance from Source");
-            for (int i = 0; i < V; i++) {
-                if (dist[i] == Integer.MAX_VALUE / 2) {
+            for (int i = 0; i < V; i++) 
+            {
+                if (dist[i] == Integer.MAX_VALUE / 2) 
+                {
                     System.out.println(i + "\tINF");
-                } else {
+                } 
+                else 
+                {
                     System.out.println(i + "\t" + dist[i]);
                 }
             }
         }
     }
     
-    // ========================================================================
     // PROBLEM 10: Dynamic Programming
-    // ========================================================================
     
     // 10a: 0/1 Knapsack
-    public static int knapsack01(int[] weights, int[] values, int W) {
+    
+    public static int knapsack01(int[] weights, int[] values, int W) 
+    {
         int n = weights.length;
         int[][] dp = new int[n + 1][W + 1];
         
-        for (int i = 1; i <= n; i++) {
-            for (int w = 1; w <= W; w++) {
-                if (weights[i - 1] <= w) {
+        for (int i = 1; i <= n; i++) 
+        {
+            for (int w = 1; w <= W; w++) 
+            {
+                if (weights[i - 1] <= w) 
+                {
                     dp[i][w] = Math.max(
                         values[i - 1] + dp[i - 1][w - weights[i - 1]],
                         dp[i - 1][w]
                     );
-                } else {
+                } 
+                else 
+                {
                     dp[i][w] = dp[i - 1][w];
                 }
             }
@@ -566,14 +648,18 @@ public class AlgorithmsSolutions {
     }
     
     // 10b: Minimum Coins
-    public static int minCoins(int[] coins, int amount) {
+    
+    public static int minCoins(int[] coins, int amount) 
+    {
         int[] dp = new int[amount + 1];
         Arrays.fill(dp, Integer.MAX_VALUE);
         dp[0] = 0;
         
-        for (int i = 1; i <= amount; i++) {
+        for (int i = 1; i <= amount; i++) 
+        {
             for (int coin : coins) {
-                if (coin <= i && dp[i - coin] != Integer.MAX_VALUE) {
+                if (coin <= i && dp[i - coin] != Integer.MAX_VALUE) 
+                {
                     dp[i] = Math.min(dp[i], dp[i - coin] + 1);
                 }
             }
@@ -583,31 +669,40 @@ public class AlgorithmsSolutions {
     }
     
     // 10c: Count Coin Ways
-    public static int countWays(int[] coins, int amount) {
+    
+    public static int countWays(int[] coins, int amount) 
+    {
         int[] dp = new int[amount + 1];
-        dp[0] = 1; // One way to make 0
+        dp[0] = 1;
         
-        // Iterate over coins (outer loop) to avoid counting permutations
-        for (int coin : coins) {
-            for (int a = coin; a <= amount; a++) {
+        for (int coin : coins) 
+        {
+            for (int a = coin; a <= amount; a++) 
+            {
                 dp[a] += dp[a - coin];
             }
         }
-        
         return dp[amount];
     }
     
     // 10d: Longest Common Subsequence
-    public static int lcs(String s1, String s2) {
+    
+    public static int lcs(String s1, String s2) 
+    {
         int m = s1.length();
         int n = s2.length();
         int[][] dp = new int[m + 1][n + 1];
         
-        for (int i = 1; i <= m; i++) {
-            for (int j = 1; j <= n; j++) {
-                if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
+        for (int i = 1; i <= m; i++) 
+        {
+            for (int j = 1; j <= n; j++) 
+            {
+                if (s1.charAt(i - 1) == s2.charAt(j - 1)) 
+                {
                     dp[i][j] = dp[i - 1][j - 1] + 1;
-                } else {
+                } 
+                else 
+                {
                     dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
                 }
             }
@@ -617,32 +712,35 @@ public class AlgorithmsSolutions {
     }
     
     // 10e: Longest Increasing Subsequence
-    public static int lis(int[] arr) {
+    
+    public static int lis(int[] arr) 
+    {
         int n = arr.length;
         int[] dp = new int[n];
         Arrays.fill(dp, 1);
         
-        for (int i = 1; i < n; i++) {
-            for (int j = 0; j < i; j++) {
-                if (arr[j] < arr[i]) {
+        for (int i = 1; i < n; i++) 
+        {
+            for (int j = 0; j < i; j++) 
+            {
+                if (arr[j] < arr[i]) 
+                {
                     dp[i] = Math.max(dp[i], 1 + dp[j]);
                 }
             }
         }
         
         int maxLis = 0;
-        for (int val : dp) {
+        for (int val : dp) 
+        {
             maxLis = Math.max(maxLis, val);
         }
         
         return maxLis;
     }
     
-    // ========================================================================
-    // MAIN: TEST ALL PROBLEMS
-    // ========================================================================
-    
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         System.out.println("====================================================================");
         System.out.println("           ALGORITHM PROBLEM SET - COMPLETE JAVA SOLUTIONS");
         System.out.println("====================================================================");
@@ -683,7 +781,8 @@ public class AlgorithmsSolutions {
             System.out.println("Input B: {3, 7, 2, 6}");
             int[] result = mergeSorted(a, b);
             System.out.print("Output: {");
-            for (int i = 0; i < result.length; i++) {
+            for (int i = 0; i < result.length; i++) 
+            {
                 System.out.print(result[i]);
                 if (i < result.length - 1) System.out.print(", ");
             }
@@ -741,7 +840,8 @@ public class AlgorithmsSolutions {
             System.out.println("Input: {38, 27, 43, 3, 9, 82, 10}");
             mergeSort(arr, 0, arr.length - 1);
             System.out.print("Output: {");
-            for (int i = 0; i < arr.length; i++) {
+            for (int i = 0; i < arr.length; i++) 
+            {
                 System.out.print(arr[i]);
                 if (i < arr.length - 1) System.out.print(", ");
             }
@@ -757,7 +857,8 @@ public class AlgorithmsSolutions {
             swapCount = 0;
             quickSort(arr, 0, arr.length - 1);
             System.out.print("Output: {");
-            for (int i = 0; i < arr.length; i++) {
+            for (int i = 0; i < arr.length; i++) 
+            {
                 System.out.print(arr[i]);
                 if (i < arr.length - 1) System.out.print(", ");
             }
@@ -769,7 +870,8 @@ public class AlgorithmsSolutions {
         System.out.println("\n[PROBLEM 7] Fractional Knapsack");
         System.out.println("--------------------------------");
         {
-            Item[] items = {
+            Item[] items = 
+            {
                 new Item(10, 60),
                 new Item(20, 100),
                 new Item(30, 120)
@@ -783,7 +885,8 @@ public class AlgorithmsSolutions {
         System.out.println("\n[PROBLEM 8] Minimum Spanning Tree");
         System.out.println("----------------------------------");
         {
-            int[][] graph = {
+            int[][] graph = 
+            {
                 {0, 2, 0, 6, 0},
                 {2, 0, 3, 8, 5},
                 {0, 3, 0, 7, 0},
@@ -793,7 +896,8 @@ public class AlgorithmsSolutions {
             
             primsMST(graph);
             
-            Edge[] edges = {
+            Edge[] edges = 
+            {
                 new Edge(0, 1, 2), new Edge(0, 3, 6), new Edge(1, 2, 3),
                 new Edge(1, 3, 8), new Edge(1, 4, 5), new Edge(2, 3, 7),
                 new Edge(2, 4, 7), new Edge(3, 4, 9)
@@ -806,7 +910,8 @@ public class AlgorithmsSolutions {
         System.out.println("\n[PROBLEM 9] Shortest Path Algorithms");
         System.out.println("-------------------------------------");
         {
-            int[][] graph = {
+            int[][] graph = 
+            {
                 {0, 4, 0, 0, 8},
                 {4, 0, 8, 0, 11},
                 {0, 8, 0, 7, 0},
@@ -816,7 +921,8 @@ public class AlgorithmsSolutions {
             
             dijkstra(graph, 0);
             
-            Edge[] edges = {
+            Edge[] edges = 
+            {
                 new Edge(0, 1, 6), new Edge(0, 2, 7), new Edge(1, 2, 8),
                 new Edge(1, 3, 5), new Edge(1, 4, -4), new Edge(2, 3, -3),
                 new Edge(2, 4, 9), new Edge(3, 1, -2), new Edge(4, 0, 2),
